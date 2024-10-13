@@ -1,19 +1,17 @@
-from fastapi import FastAPI
-from pydantic import BaseModel
-import numpy as np
 import joblib
+from fastapi import FastAPI
 
 app = FastAPI()
 
-# Load model
+# Load the model at the start of the app
 model = joblib.load("iris_knn_model.pkl")
 
-# Input model
-class IrisData(BaseModel):
-    data: list
-
-@app.post("/predict")
-async def predict(iris_data: IrisData):
-    new_data = np.array(iris_data.data)
-    prediction = model.predict(new_data).tolist()
+@app.get("/predict")
+def predict(sepal_length: float, sepal_width: float, petal_length: float, petal_width: float):
+    # Create a feature array for the prediction
+    features = [[sepal_length, sepal_width, petal_length, petal_width]]
+    
+    # Get the prediction from the model
+    prediction = model.predict(features)[0]
+    
     return {"prediction": prediction}

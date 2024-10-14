@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iris Flower Classifier</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Iris Flower Classification</h1>
+      <div class="form-container">
+        <input type="number" id="sepal_length" placeholder="Sepal Length" />
+        <input type="number" id="sepal_width" placeholder="Sepal Width" />
+        <input type="number" id="petal_length" placeholder="Petal Length" />
+        <input type="number" id="petal_width" placeholder="Petal Width" />
+        <button onclick="classify()">Classify</button>
+      </div>
+      <div class="result-container">
+        <h2 id="result">Prediction:</h2>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

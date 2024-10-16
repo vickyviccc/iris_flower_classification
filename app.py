@@ -15,3 +15,10 @@ def predict(sepal_length: float, sepal_width: float, petal_length: float, petal_
     prediction = model.predict(features)[0]
     
     return {"prediction": prediction}
+
+if __name__ == "__main__":
+    import uvicorn
+    import os
+    uvicorn.run(app, host="0.0.0.0", port=int(os.getenv("PORT", 8000)))
+
+

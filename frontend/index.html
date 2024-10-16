@@ -80,15 +80,15 @@
 
     <script>
       document
-        .getElementById("predictForm")
+        .getElementById("predictionForm")
         .addEventListener("submit", function (event) {
           event.preventDefault(); // Prevent the form from submitting the traditional way
 
           // Get form values
-          const sepalLength = document.getElementById("sepal_length").value;
-          const sepalWidth = document.getElementById("sepal_width").value;
-          const petalLength = document.getElementById("petal_length").value;
-          const petalWidth = document.getElementById("petal_width").value;
+          const sepalLength = document.getElementById("sepal-length").value;
+          const sepalWidth = document.getElementById("sepal-width").value;
+          const petalLength = document.getElementById("petal-length").value;
+          const petalWidth = document.getElementById("petal-width").value;
 
           // Make an API call using Fetch
           const apiUrl = `https://my-fastapi-app.azurewebsites.net/predict?sepal_length=${sepalLength}&sepal_width=${sepalWidth}&petal_length=${petalLength}&petal_width=${petalWidth}`;
@@ -98,11 +98,11 @@
             .then((data) => {
               // Display the prediction result
               document.getElementById(
-                "result"
+                "predictionResult"
               ).innerText = `Prediction: ${data.prediction}`;
             })
             .catch((error) => {
-              document.getElementById("result").innerText =
+              document.getElementById("predictionResult").innerText =
                 "Error fetching prediction";
               console.error("Error:", error);
             });

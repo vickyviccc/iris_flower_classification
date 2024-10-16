@@ -3,54 +3,80 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
     <title>Iris Flower Prediction</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #e0f7fa;
+        text-align: center;
+      }
+
+      h1 {
+        color: purple;
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      form {
+        display: inline-block;
+        margin-bottom: 20px;
+        text-align: left;
+      }
+
+      label {
+        font-size: 1.1rem;
+        margin: 10px 0;
+        display: block;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border: 2px solid purple;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: purple;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.1rem;
+      }
+
+      .result {
+        margin-top: 20px;
+        font-size: 1.3rem;
+        color: green;
+      }
+    </style>
   </head>
   <body>
     <h1>Iris Flower Prediction</h1>
-    <br />
-    <form id="predictForm">
-      <label for="sepal_length">Sepal Length:</label>
-      <input
-        type="number"
-        step="any"
-        id="sepal_length"
-        name="sepal_length"
-        required
-      /><br /><br />
 
-      <label for="sepal_width">Sepal Width:</label>
-      <input
-        type="number"
-        step="any"
-        id="sepal_width"
-        name="sepal_width"
-        required
-      /><br /><br />
+    <form id="predictionForm">
+      <label for="sepal-length">Sepal Length:</label>
+      <input type="text" id="sepal-length" name="sepal_length" required />
 
-      <label for="petal_length">Petal Length:</label>
-      <input
-        type="number"
-        step="any"
-        id="petal_length"
-        name="petal_length"
-        required
-      /><br /><br />
+      <label for="sepal-width">Sepal Width:</label>
+      <input type="text" id="sepal-width" name="sepal_width" required />
 
-      <label for="petal_width">Petal Width:</label>
-      <input
-        type="number"
-        step="any"
-        id="petal_width"
-        name="petal_width"
-        required
-      /><br /><br />
+      <label for="petal-length">Petal Length:</label>
+      <input type="text" id="petal-length" name="petal_length" required />
 
-      <input type="submit" value="Predict" />
+      <label for="petal-width">Petal Width:</label>
+      <input type="text" id="petal-width" name="petal_width" required />
+
+      <button type="submit">Predict</button>
     </form>
 
-    <h2>Prediction Result:</h2>
-    <p id="result">Your prediction will appear here.</p>
+    <div class="result" id="predictionResult">
+      Prediction Result: <span>Your prediction will appear here.</span>
+    </div>
 
     <script>
       document

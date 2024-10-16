@@ -3,23 +3,82 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Iris Flower Classifier</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Iris Flower Prediction</title>
   </head>
   <body>
-    <div class="container">
-      <h1>Iris Flower Classification</h1>
-      <div class="form-container">
-        <input type="number" id="sepal_length" placeholder="Sepal Length" />
-        <input type="number" id="sepal_width" placeholder="Sepal Width" />
-        <input type="number" id="petal_length" placeholder="Petal Length" />
-        <input type="number" id="petal_width" placeholder="Petal Width" />
-        <button onclick="classify()">Classify</button>
-      </div>
-      <div class="result-container">
-        <h2 id="result">Prediction:</h2>
-      </div>
-    </div>
-    <script src="script.js"></script>
+    <h1>Iris Flower Prediction</h1>
+    <form id="predictForm">
+      <label for="sepal_length">Sepal Length:</label>
+      <input
+        type="number"
+        step="any"
+        id="sepal_length"
+        name="sepal_length"
+        required
+      /><br /><br />
+
+      <label for="sepal_width">Sepal Width:</label>
+      <input
+        type="number"
+        step="any"
+        id="sepal_width"
+        name="sepal_width"
+        required
+      /><br /><br />
+
+      <label for="petal_length">Petal Length:</label>
+      <input
+        type="number"
+        step="any"
+        id="petal_length"
+        name="petal_length"
+        required
+      /><br /><br />
+
+      <label for="petal_width">Petal Width:</label>
+      <input
+        type="number"
+        step="any"
+        id="petal_width"
+        name="petal_width"
+        required
+      /><br /><br />
+
+      <input type="submit" value="Predict" />
+    </form>
+
+    <h2>Prediction Result:</h2>
+    <p id="result">Your prediction will appear here.</p>
+
+    <script>
+      document
+        .getElementById("predictForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent the form from submitting the traditional way
+
+          // Get form values
+          const sepalLength = document.getElementById("sepal_length").value;
+          const sepalWidth = document.getElementById("sepal_width").value;
+          const petalLength = document.getElementById("petal_length").value;
+          const petalWidth = document.getElementById("petal_width").value;
+
+          // Make an API call using Fetch
+          const apiUrl = `https://my-fastapi-app.azurewebsites.net/predict?sepal_length=${sepalLength}&sepal_width=${sepalWidth}&petal_length=${petalLength}&petal_width=${petalWidth}`;
+
+          fetch(apiUrl)
+            .then((response) => response.json())
+            .then((data) => {
+              // Display the prediction result
+              document.getElementById(
+                "result"
+              ).innerText = `Prediction: ${data.prediction}`;
+            })
+            .catch((error) => {
+              document.getElementById("result").innerText =
+                "Error fetching prediction";
+              console.error("Error:", error);
+            });
+        });
+    </script>
   </body>
 </html>
